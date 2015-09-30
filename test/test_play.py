@@ -26,6 +26,7 @@ def test_play_success(runner):
         'Please enter number of Bishops: 4\n'
         'Please enter number of Rooks: 0\n'
         'Please enter number of Knights: 1\n'
+        '\n'
     )
 
 
@@ -45,6 +46,7 @@ def test_play_width_string(runner):
         'Please enter number of Bishops: 4\n'
         'Please enter number of Rooks: 0\n'
         'Please enter number of Knights: 1\n'
+        '\n'
     )
 
 
@@ -64,6 +66,7 @@ def test_play_invalid_width_number(runner):
         'Please enter number of Bishops: 4\n'
         'Please enter number of Rooks: 0\n'
         'Please enter number of Knights: 1\n'
+        '\n'
     )
 
 
@@ -83,6 +86,7 @@ def test_play_height_string(runner):
         'Please enter number of Bishops: 4\n'
         'Please enter number of Rooks: 0\n'
         'Please enter number of Knights: 1\n'
+        '\n'
     )
 
 
@@ -102,6 +106,7 @@ def test_play_invalid_height_number(runner):
         'Please enter number of Bishops: 4\n'
         'Please enter number of Rooks: 0\n'
         'Please enter number of Knights: 1\n'
+        '\n'
     )
 
 
@@ -122,6 +127,7 @@ def test_play_piece_number_string():
         'Please enter number of Bishops: 4\n'
         'Please enter number of Rooks: 0\n'
         'Please enter number of Knights: 1\n'
+        '\n'
     )
 
 
@@ -142,4 +148,5 @@ def test_play_invalid_piece_number():
         'Please enter number of Bishops: 4\n'
         'Please enter number of Rooks: 0\n'
         'Please enter number of Knights: 1\n'
+        '\n'
     )

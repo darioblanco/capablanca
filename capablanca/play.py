@@ -4,6 +4,7 @@
 import click
 
 from capablanca import custom_types
+from capablanca.core import ChessPlayer
 
 
 @click.command()
@@ -29,6 +30,9 @@ def play():
     pieces['N'] = click.prompt("Please enter number of Knights",
                                type=custom_types.PieceNumber())
 
+    cp = ChessPlayer(width, height, pieces)
+    cp.run()
+    click.echo(cp.draw_boards())
 
 if __name__ == '__main__':
     play()
