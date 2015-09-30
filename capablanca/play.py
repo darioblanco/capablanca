@@ -17,23 +17,17 @@ def play():
     height = click.prompt("Please enter board height",
                           type=custom_types.BoardDimension())
 
-    pieces = {
-        'King': 0,
-        'Queen': 0,
-        'Bishop': 0,
-        'Rook': 0,
-        'Knight': 0
-    }
-    pieces['King'] = click.prompt("Please enter number of Kings",
-                                  type=custom_types.PieceNumber())
-    pieces['Queen'] = click.prompt("Please enter number of Queens",
-                                   type=custom_types.PieceNumber())
-    pieces['Bishop'] = click.prompt("Please enter number of Bishops",
-                                    type=custom_types.PieceNumber())
-    pieces['Rook'] = click.prompt("Please enter number of Rooks",
-                                  type=custom_types.PieceNumber())
-    pieces['Knight'] = click.prompt("Please enter number of Knights",
-                                    type=custom_types.PieceNumber())
+    pieces = {}
+    pieces['K'] = click.prompt("Please enter number of Kings",
+                               type=custom_types.PieceNumber())
+    pieces['Q'] = click.prompt("Please enter number of Queens",
+                               type=custom_types.PieceNumber())
+    pieces['B'] = click.prompt("Please enter number of Bishops",
+                               type=custom_types.PieceNumber())
+    pieces['R'] = click.prompt("Please enter number of Rooks",
+                               type=custom_types.PieceNumber())
+    pieces['N'] = click.prompt("Please enter number of Knights",
+                               type=custom_types.PieceNumber())
 
 
 if __name__ == '__main__':
