@@ -14,7 +14,7 @@ def play():
     """
     width = click.prompt("Please enter board width",
                          type=custom_types.BoardDimension())
-    height = click.prompt("Please enter board heigth",
+    height = click.prompt("Please enter board height",
                           type=custom_types.BoardDimension())
 
     pieces = {

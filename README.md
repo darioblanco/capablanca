@@ -37,3 +37,15 @@ Capablanca also explains what he does!
 
 After all the data he needs have been provided, Capablanca will draw all possible combinations.
 
+
+## Testing
+
+For testing, you have to install the development dependencies:
+
+> pip install -r dev-requirements.txt
+
+Tests are using `pytest` framework, for running all of them, just execute
+
+> py.test
+
+You can find more information about how to run `pytest` [here](https://pytest.org/latest/usage.html)

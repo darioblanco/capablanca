@@ -1,0 +1,145 @@
+# -*- coding: utf-8 -*-
+# Copyright 2015, Dario Blanco
+
+import pytest
+from click.testing import CliRunner
+
+from capablanca.play import play
+
+
+@pytest.fixture()
+def runner():
+    return CliRunner()
+
+
+def test_play_success(runner):
+    """Should store console parameters when they are correct"""
+    # Provide all the parameters correctly at once
+    result = runner.invoke(play, input='10\n10\n1\n2\n4\n0\n1\n')
+    assert not result.exception
+    assert result.exit_code == 0
+    assert result.output == (
+        'Please enter board width: 10\n'
+        'Please enter board height: 10\n'
+        'Please enter number of Kings: 1\n'
+        'Please enter number of Queens: 2\n'
+        'Please enter number of Bishops: 4\n'
+        'Please enter number of Rooks: 0\n'
+        'Please enter number of Knights: 1\n'
+    )
+
+
+def test_play_width_string(runner):
+    """Should show an error when width is a string"""
+    # Provide an incorrect width string first time, and correct later
+    result = runner.invoke(play, input='foo\n10\n10\n1\n2\n4\n0\n1\n')
+    assert not result.exception
+    assert result.exit_code == 0
+    assert result.output == (
+        'Please enter board width: foo\n'
+        'Error: provided value is not a valid integer\n'
+        'Please enter board width: 10\n'
+        'Please enter board height: 10\n'
+        'Please enter number of Kings: 1\n'
+        'Please enter number of Queens: 2\n'
+        'Please enter number of Bishops: 4\n'
+        'Please enter number of Rooks: 0\n'
+        'Please enter number of Knights: 1\n'
+    )
+
+
+def test_play_invalid_width_number(runner):
+    """Should show an error when width is an out of bounds number"""
+    # Provide an incorrect width number first time, and correct later
+    result = runner.invoke(play, input='0\n10\n10\n1\n2\n4\n0\n1\n')
+    assert not result.exception
+    assert result.exit_code == 0
+    assert result.output == (
+        'Please enter board width: 0\n'
+        'Error: dimension 0 should be greater than 0 and lesser than 100\n'
+        'Please enter board width: 10\n'
+        'Please enter board height: 10\n'
+        'Please enter number of Kings: 1\n'
+        'Please enter number of Queens: 2\n'
+        'Please enter number of Bishops: 4\n'
+        'Please enter number of Rooks: 0\n'
+        'Please enter number of Knights: 1\n'
+    )
+
+
+def test_play_height_string(runner):
+    """Should show an error when height is a string"""
+    # Provide an incorrect height string first time, and correct later
+    result = runner.invoke(play, input='10\nfoo\n10\n1\n2\n4\n0\n1\n')
+    assert not result.exception
+    assert result.exit_code == 0
+    assert result.output == (
+        'Please enter board width: 10\n'
+        'Please enter board height: foo\n'
+        'Error: provided value is not a valid integer\n'
+        'Please enter board height: 10\n'
+        'Please enter number of Kings: 1\n'
+        'Please enter number of Queens: 2\n'
+        'Please enter number of Bishops: 4\n'
+        'Please enter number of Rooks: 0\n'
+        'Please enter number of Knights: 1\n'
+    )
+
+
+def test_play_invalid_height_number(runner):
+    """Should show an error when height is an out of bounds number"""
+    # Provide an incorrect height number first time, and correct later
+    result = runner.invoke(play, input='10\n0\n10\n1\n2\n4\n0\n1\n')
+    assert not result.exception
+    assert result.exit_code == 0
+    assert result.output == (
+        'Please enter board width: 10\n'
+        'Please enter board height: 0\n'
+        'Error: dimension 0 should be greater than 0 and lesser than 100\n'
+        'Please enter board height: 10\n'
+        'Please enter number of Kings: 1\n'
+        'Please enter number of Queens: 2\n'
+        'Please enter number of Bishops: 4\n'
+        'Please enter number of Rooks: 0\n'
+        'Please enter number of Knights: 1\n'
+    )
+
+
+def test_play_piece_number_string():
+    """Should show an error when a piece number is a string"""
+    runner = CliRunner()
+    # Provide a piece number as string, and correct later
+    result = runner.invoke(play, input='10\n10\nfoo\n1\n2\n4\n0\n1\n')
+    assert not result.exception
+    assert result.exit_code == 0
+    assert result.output == (
+        'Please enter board width: 10\n'
+        'Please enter board height: 10\n'
+        'Please enter number of Kings: foo\n'
+        'Error: provided value is not a valid integer\n'
+        'Please enter number of Kings: 1\n'
+        'Please enter number of Queens: 2\n'
+        'Please enter number of Bishops: 4\n'
+        'Please enter number of Rooks: 0\n'
+        'Please enter number of Knights: 1\n'
+    )
+
+
+def test_play_invalid_piece_number():
+    """Should show an error when a piece number is out of bounds"""
+    runner = CliRunner()
+    # Provide an incorrect piece number first time, and correct later
+    result = runner.invoke(play, input='10\n10\n1000\n1\n2\n4\n0\n1\n')
+    assert not result.exception
+    assert result.exit_code == 0
+    assert result.output == (
+        'Please enter board width: 10\n'
+        'Please enter board height: 10\n'
+        'Please enter number of Kings: 1000\n'
+        'Error: piece number 1000 should be lesser than 1000\n'
+        'Please enter number of Kings: 1\n'
+        'Please enter number of Queens: 2\n'
+        'Please enter number of Bishops: 4\n'
+        'Please enter number of Rooks: 0\n'
+        'Please enter number of Knights: 1\n'
+    )
