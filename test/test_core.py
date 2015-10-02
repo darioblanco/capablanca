@@ -26,7 +26,7 @@ def test_draw_boards():
 
 
 def test_chess_player_3x3_solutions():
-    """Should give four solutions when giving 2 kings and 1 Rook for 3x3"""
+    """Should give four solutions when giving 2 Kings and 1 Rook for 3x3"""
     cp = ChessPlayer(3, 3, {'K': 2, 'Q': 0, 'B': 0, 'R': 1, 'N': 0})
     assert cp.pieces == ['R', 'K', 'K']
 
@@ -53,4 +53,63 @@ def test_chess_player_3x3_solutions():
          '* R - - *\n'
          '* - - K *\n'
          '* * * * *\n')])
+    assert cp.solutions == expected_solutions
+
+
+def test_chess_player_4x4_solutions():
+    """Should give eight solutions when giving 2 Rooks and 4 Knights for 4x4"""
+    cp = ChessPlayer(4, 4, {'K': 0, 'Q': 0, 'B': 0, 'R': 2, 'N': 4})
+    assert cp.pieces == ['R', 'R', 'N', 'N', 'N', 'N']
+
+    cp.run()
+
+    expected_solutions = set([
+        ('* * * * * *\n'
+         '* R - - - *\n'
+         '* - N - N *\n'
+         '* - - R - *\n'
+         '* - N - N *\n'
+         '* * * * * *\n'),
+        ('* * * * * *\n'
+         '* N - N - *\n'
+         '* - R - - *\n'
+         '* N - N - *\n'
+         '* - - - R *\n'
+         '* * * * * *\n'),
+        ('* * * * * *\n'
+         '* - - - R *\n'
+         '* N - N - *\n'
+         '* - R - - *\n'
+         '* N - N - *\n'
+         '* * * * * *\n'),
+        ('* * * * * *\n'
+         '* - R - - *\n'
+         '* N - N - *\n'
+         '* - - - R *\n'
+         '* N - N - *\n'
+         '* * * * * *\n'),
+        ('* * * * * *\n'
+         '* - N - N *\n'
+         '* - - R - *\n'
+         '* - N - N *\n'
+         '* R - - - *\n'
+         '* * * * * *\n'),
+        ('* * * * * *\n'
+         '* N - N - *\n'
+         '* - - - R *\n'
+         '* N - N - *\n'
+         '* - R - - *\n'
+         '* * * * * *\n'),
+        ('* * * * * *\n'
+         '* - N - N *\n'
+         '* R - - - *\n'
+         '* - N - N *\n'
+         '* - - R - *\n'
+         '* * * * * *\n'),
+        ('* * * * * *\n'
+         '* - - R - *\n'
+         '* - N - N *\n'
+         '* R - - - *\n'
+         '* - N - N *\n'
+         '* * * * * *\n')])
     assert cp.solutions == expected_solutions

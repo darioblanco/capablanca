@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 # Copyright 2015, Dario Blanco
 
+from copy import deepcopy
+
 from capablanca import piece
 
 
@@ -59,8 +61,8 @@ class ChessPlayer(object):
                 # Current piece in that position threatens another one: skip
                 continue
 
-            o = occupied.copy()  # shallow copy of occupied positions set
-            a = assigned.copy()  # shallow copy of assigned positions dict
+            o = deepcopy(occupied)  # deep copy of occupied positions set
+            a = deepcopy(assigned)  # deep copy of assigned positions dict
 
             piece_positions = a.get(p, [])
             if f in piece_positions:
