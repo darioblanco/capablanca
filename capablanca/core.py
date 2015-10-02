@@ -61,6 +61,12 @@ class ChessPlayer(object):
 
             o = occupied.copy()  # shallow copy of occupied positions set
             a = assigned.copy()  # shallow copy of assigned positions dict
+
+            piece_positions = a.get(p, [])
+            if f in piece_positions:
+                # Current position is already assigned
+                continue
+
             # Occupy that slot for further iterations
             o.add(f)
             # Add position for that piece (for printing purposes)
