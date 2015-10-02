@@ -12,7 +12,7 @@ def test_draw_boards():
     cp.run()
 
     expected_output = (
-        '\nSolutions:\n\n'
+        '\nFound 2 solutions:\n\n'
         '* * * *\n'
         '* R - *\n'
         '* - R *\n'

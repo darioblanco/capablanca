@@ -72,7 +72,8 @@ class ChessPlayer(object):
 
     def draw_boards(self):
         """Concatenates all tracked unique solution strings"""
-        return "\nSolutions:\n\n{}\n".format("\n".join(self.solutions))
+        return "\nFound {} solutions:\n\n{}\n".format(
+            len(self.solutions), "\n".join(self.solutions))
 
     def _generate_board(self, layout):
         """
