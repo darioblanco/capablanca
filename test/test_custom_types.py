@@ -35,10 +35,10 @@ def test_board_dimension_not_integer(board_dimension):
 def test_board_dimension_out_of_bounds(board_dimension):
     """Should track an error when the board dimension is out of bounds"""
     with pytest.raises(BadParameter) as excinfo:
-        board_dimension.convert('100', None, None)
+        board_dimension.convert('10', None, None)
     exc_msg = excinfo.exconly(tryshort=True)
-    assert exc_msg == ('BadParameter: dimension 100 should be greater than 0 '
-                       'and lesser than 100')
+    assert exc_msg == ('BadParameter: dimension 10 should be greater than 0 '
+                       'and lesser than 8')
 
 
 def test_piece_number_success(piece_number):
@@ -57,7 +57,7 @@ def test_piece_number_not_integer(piece_number):
 def test_piece_number_out_of_bounds(piece_number):
     """Should track an error when the piece number is out of bounds"""
     with pytest.raises(BadParameter) as excinfo:
-        piece_number.convert('1000', None, None)
+        piece_number.convert('11', None, None)
     exc_msg = excinfo.exconly(tryshort=True)
-    assert exc_msg == ('BadParameter: piece number 1000 should be '
-                       'lesser than 1000')
+    assert exc_msg == ('BadParameter: piece number 11 should be '
+                       'lesser or equals than 10')

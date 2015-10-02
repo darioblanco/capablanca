@@ -16,11 +16,11 @@ class BoardDimension(click.ParamType):
         except ValueError:
             self.fail('provided value is not a valid integer')
         else:
-            if 0 < dimension < 100:
+            if 0 < dimension < 8:
                 return dimension
             else:
                 self.fail('dimension {} should be greater than 0 '
-                          'and lesser than 100'.format(dimension))
+                          'and lesser than 8'.format(dimension))
 
     def __repr__(self):
         return 'DIMENSION'
@@ -38,10 +38,10 @@ class PieceNumber(click.ParamType):
         except ValueError:
             self.fail('provided value is not a valid integer')
         else:
-            if n_pieces < 1000:
+            if n_pieces <= 10:
                 return n_pieces
             else:
-                self.fail('piece number {} should be lesser than 1000'
+                self.fail('piece number {} should be lesser or equals than 10'
                           ''.format(n_pieces))
 
     def __repr__(self):
