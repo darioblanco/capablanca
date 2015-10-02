@@ -10,7 +10,7 @@ class Piece(object):
         self.height = height
 
     def threatened_positions(self, current):
-        """Calculates threathened positions from the current one"""
+        """Calculates threatened positions from the current one"""
         raise NotImplementedError()
 
     def _is_valid_position(self, pos):
@@ -30,7 +30,7 @@ class King(Piece):
     """
 
     def threatened_positions(self, current):
-        """Calculates King threathened positions from the current one"""
+        """Calculates King threatened positions from the current one"""
         positions = []
 
         i, j = current
@@ -49,7 +49,7 @@ class Bishop(Piece):
     """
 
     def threatened_positions(self, current):
-        """Calculates Bishop threathened positions from the current one"""
+        """Calculates Bishop threatened positions from the current one"""
         positions = []
 
         limit = min(self.height, self.width)
@@ -81,7 +81,7 @@ class Rook(Piece):
     """
 
     def threatened_positions(self, current):
-        """Calculates Rook threathened positions from the current one"""
+        """Calculates Rook threatened positions from the current one"""
         positions = []
 
         i, j = current
@@ -101,7 +101,7 @@ class Queen(Bishop, Rook):
     """
 
     def threatened_positions(self, current):
-        """Calculates Queen threathened positions from the current one"""
+        """Calculates Queen threatened positions from the current one"""
         # Retrieve positions for the Bishop movement
         positions = super(Queen, self).threatened_positions(current)
         # Retrieve positions for the Rook movement
@@ -116,7 +116,7 @@ class Knight(Piece):
     """
 
     def threatened_positions(self, current):
-        """Calculates King threathened positions from the current one"""
+        """Calculates King threatened positions from the current one"""
         positions = []
 
         i, j = current

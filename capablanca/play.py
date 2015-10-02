@@ -34,5 +34,6 @@ def play():
     cp.run()
     click.echo(cp.draw_boards())
 
+
 if __name__ == '__main__':
     play()
