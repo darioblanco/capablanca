@@ -5,11 +5,18 @@ import pytest
 from click.testing import CliRunner
 
 from capablanca.play import play
+from capablanca.core import ChessPlayer
 
 
 @pytest.fixture()
 def runner():
     return CliRunner()
+
+
+@pytest.fixture(autouse=True)
+def mock_chess_player(monkeypatch):
+    monkeypatch.setattr(ChessPlayer, 'run', lambda s: None)
+    monkeypatch.setattr(ChessPlayer, 'draw_boards', lambda s: '')
 
 
 def test_play_success(runner):
