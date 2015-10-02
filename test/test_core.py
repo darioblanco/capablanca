@@ -10,9 +10,10 @@ def test_draw_boards():
     assert cp.pieces == ['R', 'R']
 
     cp.run()
+    cp.elapsed_time = 0.000379
 
     expected_output = (
-        '\nFound 2 solutions:\n\n'
+        '\nSolutions:\n\n'
         '* * * *\n'
         '* R - *\n'
         '* - R *\n'
@@ -21,6 +22,7 @@ def test_draw_boards():
         '* - R *\n'
         '* R - *\n'
         '* * * *\n\n'
+        '2 solutions found in 0.000379 seconds\n'
     )
     assert cp.draw_boards() == expected_output
 

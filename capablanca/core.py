@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Copyright 2015, Dario Blanco
 
+import time
 from copy import deepcopy
 
 from capablanca import piece
@@ -28,12 +29,14 @@ class ChessPlayer(object):
                 self.pieces += [name for i in range(count)]
 
         self.solutions = set()
+        self.elapsed_time = None  # Problem resolution time in float seconds
 
     def run(self):
         """
         Starts the backtracking algorithm process from top to down,
         setting the initial state
         """
+        start = time.clock()
         free = set()
         # Generate all board position coordinates as tuples
         for i in range(self.width):
@@ -41,6 +44,7 @@ class ChessPlayer(object):
                 free.add((i, j))
         # Start backtracking algorithm
         self._solve(free, set(), {}, 0)
+        self.elapsed_time = time.clock() - start
 
     def _solve(self, free, occupied, assigned, piece_index):
         """
@@ -80,8 +84,8 @@ class ChessPlayer(object):
 
     def draw_boards(self):
         """Concatenates all tracked unique solution strings"""
-        return "\nFound {} solutions:\n\n{}\n".format(
-            len(self.solutions), "\n".join(self.solutions))
+        return "\nSolutions:\n\n{}\n{} solutions found in {} seconds\n".format(
+            "\n".join(self.solutions), len(self.solutions), self.elapsed_time)
 
     def _generate_board(self, layout):
         """
