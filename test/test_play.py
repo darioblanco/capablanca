@@ -10,11 +10,13 @@ from capablanca.core import ChessPlayer
 
 @pytest.fixture()
 def runner():
+    """Creates a CliRunner instance for any test that needs it"""
     return CliRunner()
 
 
 @pytest.fixture(autouse=True)
 def mock_chess_player(monkeypatch):
+    """Mocks ChessPlayer methods, avoiding algorithm execution"""
     monkeypatch.setattr(ChessPlayer, 'run', lambda s: None)
     monkeypatch.setattr(ChessPlayer, 'draw_boards', lambda s: '')
 
