@@ -5,10 +5,11 @@ import click
 
 
 class BoardDimension(click.ParamType):
+    """Hold validation for width/height console parameters"""
     name = 'dimension'
 
     def convert(self, value, param, ctx):
-        """Returns a dimension (widht/height) within the allowed bounds"""
+        """Returns a dimension (width/height) within the allowed bounds"""
 
         try:
             dimension = int(value)
@@ -26,6 +27,7 @@ class BoardDimension(click.ParamType):
 
 
 class PieceNumber(click.ParamType):
+    """Hold validation for piece console parameters"""
     name = 'piece_number'
 
     def convert(self, value, param, ctx):
