@@ -4,25 +4,53 @@
 from capablanca.core import ChessPlayer
 
 
-def test_chess_player_3x3():
+def test_draw_boards():
+    """Should pretty print the board with the expected format"""
+    cp = ChessPlayer(2, 2, {'R': 2})
+    assert cp.pieces == ['R', 'R']
+
+    cp.run()
+
+    expected_output = (
+        '\nSolutions:\n\n'
+        '* * * *\n'
+        '* R - *\n'
+        '* - R *\n'
+        '* * * *\n\n'
+        '* * * *\n'
+        '* - R *\n'
+        '* R - *\n'
+        '* * * *\n\n'
+    )
+    assert cp.draw_boards() == expected_output
+
+
+def test_chess_player_3x3_solutions():
+    """Should give four solutions when giving 2 kings and 1 Rook for 3x3"""
     cp = ChessPlayer(3, 3, {'K': 2, 'Q': 0, 'B': 0, 'R': 1, 'N': 0})
-    cp.run()
-
     assert cp.pieces == ['R', 'K', 'K']
-    assert cp.draw_boards() == ''
 
-
-def test_chess_player_4x4():
-    cp = ChessPlayer(4, 4, {'K': 0, 'Q': 0, 'B': 0, 'R': 2, 'N': 4})
     cp.run()
 
-    assert cp.pieces == ['R', 'R', 'N', 'N', 'N', 'N']
-    assert cp.draw_boards() == ''
-
-
-def test_chess_player_7x7():
-    cp = ChessPlayer(7, 7, {'K': 2, 'Q': 2, 'B': 2, 'R': 0, 'N': 1})
-    cp.run()
-
-    assert cp.pieces == ['Q', 'Q', 'K', 'K', 'B', 'B', 'N']
-    assert cp.draw_boards() == ''
+    expected_solutions = set([
+        ('* * * * *\n'
+         '* K - - *\n'
+         '* - - R *\n'
+         '* K - - *\n'
+         '* * * * *\n'),
+        ('* * * * *\n'
+         '* K - K *\n'
+         '* - - - *\n'
+         '* - R - *\n'
+         '* * * * *\n'),
+        ('* * * * *\n'
+         '* - R - *\n'
+         '* - - - *\n'
+         '* K - K *\n'
+         '* * * * *\n'),
+        ('* * * * *\n'
+         '* - - K *\n'
+         '* R - - *\n'
+         '* - - K *\n'
+         '* * * * *\n')])
+    assert cp.solutions == expected_solutions
