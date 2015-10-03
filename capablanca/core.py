@@ -67,9 +67,9 @@ class ChessPlayer(object):
                 # Current piece threatens a previously placed one: backtrack
                 continue
 
-            # Deep copy occupied/assigned for preparing the recursive call
-            occupied_copy = deepcopy(occupied_positions)
+            occupied_copy = occupied_positions.copy()
             assigned_copy = deepcopy(assigned_positions)
+
             # Occupy that slot for further iterations
             occupied_copy.add(free_position)
             # Add new position to the current piece
