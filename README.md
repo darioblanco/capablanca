@@ -46,11 +46,17 @@ For developing, you have to install the development dependencies:
 
 ### Test
 
-Tests are using `pytest` framework, for running all of them, just execute
+Tests are using `pytest` framework, for running all unit tests, just execute
 
 > py.test
 
-You can find more information about how to run `pytest` [here](https://pytest.org/latest/usage.html)
+You can find more information about how to run `pytest` [here](https://pytest.org/latest/usage.html).
+
+Integration tests (under `test_capablanca.py`) are disabled by default, as they can be really slow. In order to allow a `py.test` discovery without having integration tests there, a custom py.test parameter has been created, which has to be provided in order to run them.
+
+You can execute the integration tests with
+
+> py.test --test-type integration
 
 #### Test coverage
 
