@@ -53,6 +53,13 @@ Tests are using `pytest` framework, for running all of them, just execute
 
 You can find more information about how to run `pytest` [here](https://pytest.org/latest/usage.html)
 
+#### Test coverage
+
+This project uses `pytest-cov` for measuring coverage, just append the parameter `--cov=capablanca` to any `pytest` call, for instance
+
+> py.test --cov=capablanca
+
+The test coverage statistics will be shown at the end of the run
 
 ### Code Analysis
 
