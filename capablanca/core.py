@@ -43,7 +43,7 @@ class ChessPlayer(object):
             for j in range(self.width):
                 free_positions.add((i, j))
         # Start backtracking algorithm
-        self._solve(free_positions, set(), {}, 0)
+        self._solve(free_positions, set(), [], 0)
         self.elapsed_time = time.clock() - start
 
     def _solve(self, free_positions, occupied_positions, assigned_positions,
@@ -68,12 +68,12 @@ class ChessPlayer(object):
                 continue
 
             occupied_copy = occupied_positions.copy()
-            assigned_copy = deepcopy(assigned_positions)
+            assigned_copy = assigned_positions[:]
 
             # Occupy that slot for further iterations
             occupied_copy.add(free_position)
             # Add new position to the current piece
-            assigned_copy.setdefault(piece, []).append(free_position)
+            assigned_copy.append(free_position)
 
             # Recursive call with updated free, occupied and assigned slots,
             # for the next piece index
@@ -103,9 +103,8 @@ class ChessPlayer(object):
         output = ""
         board = [['-' for x in range(self.width)]
                  for x in range(self.height)]
-        for piece_name, positions in layout.iteritems():
-            for pos in positions:
-                board[pos[0]][pos[1]] = piece_name
+        for piece_index, position in enumerate(layout):
+            board[position[0]][position[1]] = self.pieces[piece_index]
         output += "* " * (self.width + 1) + "*\n"
         for row in board:
             output += "* {} *\n".format(" ".join(row))
