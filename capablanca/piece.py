@@ -1,6 +1,12 @@
 # -*- coding: utf-8 -*-
 # Copyright 2015, Dario Blanco
 
+"""
+capablanca.piece
+~~~~~~~~~~~~~~~~~
+This module contains Chess piece abstractions with their possible movements
+"""
+
 
 class Piece(object):
     """Chess piece abstraction"""

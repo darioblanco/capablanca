@@ -1,6 +1,12 @@
 # -*- coding: utf-8 -*-
 # Copyright 2015, Dario Blanco
 
+"""
+capablanca.piece
+~~~~~~~~~~~~~~~~~
+This module provides the main entry to Capablanca and retrieves console params
+"""
+
 import click
 
 from capablanca import custom_types

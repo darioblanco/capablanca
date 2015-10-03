@@ -1,6 +1,12 @@
 # -*- coding: utf-8 -*-
 # Copyright 2015, Dario Blanco
 
+"""
+capablanca.custom_types
+~~~~~~~~~~~~~~~~~
+This module contains Click custom types for validating console parameters
+"""
+
 import click
 
 

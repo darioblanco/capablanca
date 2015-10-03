@@ -1,6 +1,12 @@
 # -*- coding: utf-8 -*-
 # Copyright 2015, Dario Blanco
 
+"""
+capablanca.core
+~~~~~~~~~~~~~~~~~
+This module contains the logic that Capablanca uses for solving chess problems
+"""
+
 import time
 from copy import deepcopy
 

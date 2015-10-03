@@ -44,7 +44,6 @@ For developing, you have to install the development dependencies:
 
 > pip install -r dev-requirements.txt
 
-
 ### Test
 
 Tests are using `pytest` framework, for running all of them, just execute
