@@ -106,9 +106,9 @@ class Queen(Bishop, Rook):
     def get_threats(self, current):
         """Calculates Queen threatened positions from the current one"""
         # Retrieve positions for the Bishop movement
-        positions = super(Queen, self).get_threats(current)
+        positions = Queen.__bases__[0].get_threats(self, current)
         # Retrieve positions for the Rook movement
-        positions.update(super(Bishop, self).get_threats(current))
+        positions.update(Queen.__bases__[1].get_threats(self, current))
         return positions
 
 
