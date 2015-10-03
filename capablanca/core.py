@@ -84,8 +84,18 @@ class ChessPlayer(object):
 
     def draw_boards(self):
         """Concatenates all tracked unique solution strings"""
-        return "\nSolutions:\n\n{}\n{} solutions found in {} seconds\n".format(
-            "\n".join(self.solutions), len(self.solutions), self.elapsed_time)
+        n_solutions = len(self.solutions)
+        output = "\nSolutions:\n\n"
+
+        for i, solution in enumerate(self.solutions):  # Show 15 solutions max
+            if i == 15:
+                break
+            else:
+                output += "{}\n".format(solution)
+
+        output += "{} solutions found in {} seconds\n".format(
+            n_solutions, self.elapsed_time)
+        return output
 
     def _generate_board(self, layout):
         """
