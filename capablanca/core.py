@@ -10,7 +10,7 @@ This module contains the logic that Capablanca uses for solving chess problems
 import time
 from copy import deepcopy
 
-from capablanca.piece import King, Queen, Bishop, Rook, Knight
+from capablanca.cache import ThreatCache
 
 
 class ChessPlayer(object):
@@ -21,13 +21,7 @@ class ChessPlayer(object):
         self.height = height
         self.width = width
 
-        self.chess_pieces = {
-            'K': King(height, width),
-            'Q': Queen(height, width),
-            'B': Bishop(height, width),
-            'R': Rook(height, width),
-            'N': Knight(height, width)
-        }
+        self.threat_cache = ThreatCache(height, width)
 
         self.pieces = []
         # Sorted list of pieces based on how many squares will they cover
@@ -68,7 +62,7 @@ class ChessPlayer(object):
         for free_position in free_positions:
             # Retrieve all positions current piece threatens in this slot
             threatened_positions = set(
-                self.chess_pieces[piece].get_threats(free_position))
+                self.threat_cache.get_threats(piece, free_position))
             if threatened_positions & occupied_positions:
                 # Current piece threatens a previously placed one: backtrack
                 continue
