@@ -73,3 +73,13 @@ The code is following [PEP8](http://www.python.org/dev/peps/pep-0008/) conventio
 > pep8 capablanca/*.py -v
 
 This command will output PEP8 errors found (if any)
+
+### Profiling
+
+In order to measure total and function running time, calls, and other useful parameters for running optimizations, you can use one of the many Python profiler tools available.
+
+For instance, with `cProfile`, you can call capablanca's script adding that module:
+
+> python -m cProfile capablanca/play.py
+
+Just use it as normally and the profile statistics will be printed out at the end.
