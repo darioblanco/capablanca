@@ -129,3 +129,69 @@ def test_chess_player_4x4_solutions():
          '* - N - N *\n'
          '* * * * * *\n')])
     assert cp.solutions == expected_solutions
+
+
+def test_chess_player_4_queens():
+    """Should solve the 4 queens problem with a 4x4 board"""
+    cp = ChessPlayer(4, 4, {'K': 0, 'Q': 4, 'B': 0, 'R': 0, 'N': 0})
+    assert cp.pieces == ['Q', 'Q', 'Q', 'Q']
+
+    cp.run()
+
+    expected_solutions = set([
+        ('* * * * * *\n'
+         '* - Q - - *\n'
+         '* - - - Q *\n'
+         '* Q - - - *\n'
+         '* - - Q - *\n'
+         '* * * * * *\n'),
+        ('* * * * * *\n'
+         '* - - Q - *\n'
+         '* Q - - - *\n'
+         '* - - - Q *\n'
+         '* - Q - - *\n'
+         '* * * * * *\n')])
+    assert cp.solutions == expected_solutions
+
+
+def test_chess_player_6_queens():
+    """Should solve the 6 queens problem with a 6x6 board"""
+    cp = ChessPlayer(6, 6, {'K': 0, 'Q': 6, 'B': 0, 'R': 0, 'N': 0})
+    assert cp.pieces == ['Q', 'Q', 'Q', 'Q', 'Q', 'Q']
+
+    cp.run()
+
+    expected_solutions = set([
+        ('* * * * * * * *\n'
+         '* - Q - - - - *\n'
+         '* - - - Q - - *\n'
+         '* - - - - - Q *\n'
+         '* Q - - - - - *\n'
+         '* - - Q - - - *\n'
+         '* - - - - Q - *\n'
+         '* * * * * * * *\n'),
+        ('* * * * * * * *\n'
+         '* - - Q - - - *\n'
+         '* - - - - - Q *\n'
+         '* - Q - - - - *\n'
+         '* - - - - Q - *\n'
+         '* Q - - - - - *\n'
+         '* - - - Q - - *\n'
+         '* * * * * * * *\n'),
+        ('* * * * * * * *\n'
+         '* - - - Q - - *\n'
+         '* Q - - - - - *\n'
+         '* - - - - Q - *\n'
+         '* - Q - - - - *\n'
+         '* - - - - - Q *\n'
+         '* - - Q - - - *\n'
+         '* * * * * * * *\n'),
+        ('* * * * * * * *\n'
+         '* - - - - Q - *\n'
+         '* - - Q - - - *\n'
+         '* Q - - - - - *\n'
+         '* - - - - - Q *\n'
+         '* - - - Q - - *\n'
+         '* - Q - - - - *\n'
+         '* * * * * * * *\n')])
+    assert cp.solutions == expected_solutions
