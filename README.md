@@ -59,3 +59,11 @@ You can find more information about how to run `pytest` [here](https://pytest.or
 Code Analysis is performed via `pylint`. In order to rate the code, simply run
 
 > pylint capablanca
+
+### Code Style
+
+The code is following [PEP8](http://www.python.org/dev/peps/pep-0008/) conventions. In order to check for convention violations, just run
+
+> pep8 capablanca/*.py -v
+
+This command will output PEP8 errors found (if any)
