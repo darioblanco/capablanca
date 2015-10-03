@@ -10,7 +10,7 @@ This module contains the logic that Capablanca uses for solving chess problems
 import time
 from copy import deepcopy
 
-from capablanca import piece
+from capablanca.piece import King, Queen, Bishop, Rook, Knight
 
 
 class ChessPlayer(object):
@@ -22,17 +22,17 @@ class ChessPlayer(object):
         self.width = width
 
         self.chess_pieces = {
-            'K': piece.King(height, width),
-            'Q': piece.Queen(height, width),
-            'B': piece.Bishop(height, width),
-            'R': piece.Rook(height, width),
-            'N': piece.Knight(height, width)
+            'K': King(height, width),
+            'Q': Queen(height, width),
+            'B': Bishop(height, width),
+            'R': Rook(height, width),
+            'N': Knight(height, width)
         }
 
         self.pieces = []
         # Sorted list of pieces based on how many squares will they cover
-        for p in ['Q', 'R', 'B', 'K', 'N']:
-            self.pieces += [p for i in range(piece_counts[p])]
+        for piece in ['Q', 'R', 'B', 'K', 'N']:
+            self.pieces += [piece for i in range(piece_counts[piece])]
 
         self.solutions = set()
         self.elapsed_time = None  # Problem resolution time in float seconds
@@ -43,16 +43,17 @@ class ChessPlayer(object):
         setting the initial state
         """
         start = time.clock()
-        free = set()
+        free_positions = set()
         # Generate all board position coordinates as tuples
         for i in range(self.height):
             for j in range(self.width):
-                free.add((i, j))
+                free_positions.add((i, j))
         # Start backtracking algorithm
-        self._solve(free, set(), {}, 0)
+        self._solve(free_positions, set(), {}, 0)
         self.elapsed_time = time.clock() - start
 
-    def _solve(self, free, occupied, assigned, piece_index):
+    def _solve(self, free_positions, occupied_positions, assigned_positions,
+               piece_index):
         """
         Iterates through the search tree recursively, from the root down,
         in depth-first order, until it finds a valid solution or it runs
@@ -60,33 +61,36 @@ class ChessPlayer(object):
         """
         if piece_index == len(self.pieces):
             # Found solution as there are no more pieces to assign
-            self.solutions.add(self._generate_board(assigned))
+            self.solutions.add(self._generate_board(assigned_positions))
             return
 
-        p = self.pieces[piece_index]  # Retrieve next chess piece
-        for f in free:
+        piece = self.pieces[piece_index]  # Retrieve next chess piece
+        for free_position in free_positions:
             # Retrieve all positions current piece threatens in this slot
-            threat_pos = set(self.chess_pieces[p].threatened_positions(f))
-            if threat_pos & occupied:
-                # Current piece in that position threatens another one: skip
+            threatened_positions = set(
+                self.chess_pieces[piece].get_threats(free_position))
+            if threatened_positions & occupied_positions:
+                # Current piece threatens a previously placed one: backtrack
                 continue
 
-            o = deepcopy(occupied)  # deep copy of occupied positions set
-            a = deepcopy(assigned)  # deep copy of assigned positions dict
-
-            piece_positions = a.get(p, [])
-            if f in piece_positions:
-                # Current position is already assigned
+            # Retrieve all positions that were assigned to that piece
+            piece_positions = assigned_positions.get(piece, [])
+            if free_position in piece_positions:
+                # Current position is already assigned: backtrack
                 continue
 
+            # Deep copy occupied/assigned for preparing the recursive call
+            occupied_copy = deepcopy(occupied_positions)
+            assigned_copy = deepcopy(assigned_positions)
             # Occupy that slot for further iterations
-            o.add(f)
-            # Add position for that piece (for printing purposes)
-            a.setdefault(p, []).append(f)
+            occupied_copy.add(free_position)
+            # Add new position to the current piece
+            assigned_copy.setdefault(piece, []).append(free_position)
 
             # Recursive call with updated free, occupied and assigned slots,
             # for the next piece index
-            self._solve(free - threat_pos - o, o, a, piece_index + 1)
+            self._solve(free_positions - threatened_positions - occupied_copy,
+                        occupied_copy, assigned_copy, piece_index + 1)
 
     def draw_boards(self):
         """Concatenates all tracked unique solution strings"""
