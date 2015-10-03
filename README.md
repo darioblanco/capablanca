@@ -38,14 +38,24 @@ Capablanca also explains what he does!
 After all the data he needs have been provided, Capablanca will draw all possible combinations.
 
 
-## Testing
+## Development
 
-For testing, you have to install the development dependencies:
+For developing, you have to install the development dependencies:
 
 > pip install -r dev-requirements.txt
+
+
+### Test
 
 Tests are using `pytest` framework, for running all of them, just execute
 
 > py.test
 
 You can find more information about how to run `pytest` [here](https://pytest.org/latest/usage.html)
+
+
+### Code Analysis
+
+Code Analysis is performed via `pylint`. In order to rate the code, simply run
+
+> pylint capablanca
