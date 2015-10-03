@@ -6,8 +6,8 @@ class Piece(object):
     """Chess piece abstraction"""
 
     def __init__(self, height, width):
-        self.width = width
         self.height = height
+        self.width = width
 
     def threatened_positions(self, current):
         """Calculates threatened positions from the current one"""

@@ -10,10 +10,10 @@ from capablanca import piece
 class ChessPlayer(object):
     """Create all possible solutions for the given pieces and board size"""
 
-    def __init__(self, width, height, piece_counts):
+    def __init__(self, height, width, piece_counts):
         """Assigns board size and create piece abstractions"""
-        self.width = width
         self.height = height
+        self.width = width
 
         self.chess_pieces = {
             'K': piece.King(height, width),
@@ -39,8 +39,8 @@ class ChessPlayer(object):
         start = time.clock()
         free = set()
         # Generate all board position coordinates as tuples
-        for i in range(self.width):
-            for j in range(self.height):
+        for i in range(self.height):
+            for j in range(self.width):
                 free.add((i, j))
         # Start backtracking algorithm
         self._solve(free, set(), {}, 0)

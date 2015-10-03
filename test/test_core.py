@@ -27,6 +27,20 @@ def test_draw_boards():
     assert cp.draw_boards() == expected_output
 
 
+def test_chess_player_1x3_solutions():
+    """Should give 1 solution when giving 2 Kings and 1x3"""
+    cp = ChessPlayer(1, 3, {'K': 2, 'Q': 0, 'B': 0, 'R': 0, 'N': 0})
+    assert cp.pieces == ['K', 'K']
+
+    cp.run()
+
+    expected_solutions = set([
+        ('* * * * *\n'
+         '* K - K *\n'
+         '* * * * *\n')])
+    assert cp.solutions == expected_solutions
+
+
 def test_chess_player_3x3_solutions():
     """Should give four solutions when giving 2 Kings and 1 Rook for 3x3"""
     cp = ChessPlayer(3, 3, {'K': 2, 'Q': 0, 'B': 0, 'R': 1, 'N': 0})

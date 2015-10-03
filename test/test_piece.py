@@ -7,17 +7,18 @@ from capablanca import piece
 def test_king_positions():
     """Should return proper threat positions when moving a King"""
     k = piece.King(3, 3)
-
-    pos = k.threatened_positions((1, 1))
-    assert pos == set([
+    assert k.threatened_positions((1, 1)) == set([
         (0, 0), (1, 0), (2, 0), (0, 1), (2, 1), (0, 2), (1, 2), (2, 2)
     ])
+    assert k.threatened_positions((0, 0)) == set([(1, 0), (0, 1), (1, 1)])
+    assert k.threatened_positions((2, 2)) == set([(1, 1), (2, 1), (1, 2)])
 
-    pos = k.threatened_positions((0, 0))
-    assert pos == set([(1, 0), (0, 1), (1, 1)])
+    k = piece.King(1, 3)
+    assert k.threatened_positions((0, 2)) == k.threatened_positions((0, 0)) \
+        == set([(0, 1)])
 
-    pos = k.threatened_positions((2, 2))
-    assert pos == set([(1, 1), (2, 1), (1, 2)])
+    k = piece.King(1, 3)
+    assert k.threatened_positions((0, 1)) == set([(0, 0), (0, 2)])
 
 
 def test_bishop_positions():

@@ -30,7 +30,7 @@ def play():
     pieces['N'] = click.prompt("Please enter number of Knights",
                                type=custom_types.PieceNumber())
 
-    cp = ChessPlayer(width, height, pieces)
+    cp = ChessPlayer(height, width, pieces)
     cp.run()
     click.echo(cp.draw_boards())
 
