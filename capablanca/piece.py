@@ -15,7 +15,7 @@ class Piece(object):
         self.height = height
         self.width = width
 
-    def threatened_positions(self, current):
+    def get_threats(self, current):
         """Calculates threatened positions from the current one"""
         raise NotImplementedError()
 
@@ -35,7 +35,7 @@ class King(Piece):
     Moves one square vertically, horizontally and diagonally
     """
 
-    def threatened_positions(self, current):
+    def get_threats(self, current):
         """Calculates King threatened positions from the current one"""
         positions = []
 
@@ -54,7 +54,7 @@ class Bishop(Piece):
     Moves diagonally
     """
 
-    def threatened_positions(self, current):
+    def get_threats(self, current):
         """Calculates Bishop threatened positions from the current one"""
         positions = []
 
@@ -86,7 +86,7 @@ class Rook(Piece):
     Moves horizontally and vertically
     """
 
-    def threatened_positions(self, current):
+    def get_threats(self, current):
         """Calculates Rook threatened positions from the current one"""
         positions = []
 
@@ -106,12 +106,12 @@ class Queen(Bishop, Rook):
     Has Bishop and Rook movements
     """
 
-    def threatened_positions(self, current):
+    def get_threats(self, current):
         """Calculates Queen threatened positions from the current one"""
         # Retrieve positions for the Bishop movement
-        positions = super(Queen, self).threatened_positions(current)
+        positions = super(Queen, self).get_threats(current)
         # Retrieve positions for the Rook movement
-        positions.update(super(Bishop, self).threatened_positions(current))
+        positions.update(super(Bishop, self).get_threats(current))
         return positions
 
 
@@ -121,7 +121,7 @@ class Knight(Piece):
     Moves in a 'L' shape (2 squares straight and 1 left or right)
     """
 
-    def threatened_positions(self, current):
+    def get_threats(self, current):
         """Calculates King threatened positions from the current one"""
         positions = []
 
