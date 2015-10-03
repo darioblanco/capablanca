@@ -67,12 +67,6 @@ class ChessPlayer(object):
                 # Current piece threatens a previously placed one: backtrack
                 continue
 
-            # Retrieve all positions that were assigned to that piece
-            piece_positions = assigned_positions.get(piece, [])
-            if free_position in piece_positions:
-                # Current position is already assigned: backtrack
-                continue
-
             # Deep copy occupied/assigned for preparing the recursive call
             occupied_copy = deepcopy(occupied_positions)
             assigned_copy = deepcopy(assigned_positions)
