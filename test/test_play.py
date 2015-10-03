@@ -60,7 +60,8 @@ def test_play_invalid_width_number(runner):
     assert result.exit_code == 0
     assert result.output == (
         'Please enter board width: 0\n'
-        'Error: dimension 0 should be greater than 0 and lesser than 8\n'
+        'Error: dimension 0 should be greater than 0 '
+        'and lesser or equals than 10\n'
         'Please enter board width: 6\n'
         'Please enter board height: 6\n'
         'Please enter number of Kings: 1\n'
@@ -101,7 +102,8 @@ def test_play_invalid_height_number(runner):
     assert result.output == (
         'Please enter board width: 6\n'
         'Please enter board height: 0\n'
-        'Error: dimension 0 should be greater than 0 and lesser than 8\n'
+        'Error: dimension 0 should be greater than 0 '
+        'and lesser or equals than 10\n'
         'Please enter board height: 6\n'
         'Please enter number of Kings: 1\n'
         'Please enter number of Queens: 2\n'

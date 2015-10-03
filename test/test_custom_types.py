@@ -35,10 +35,10 @@ def test_board_dimension_not_integer(board_dimension):
 def test_board_dimension_out_of_bounds(board_dimension):
     """Should track an error when the board dimension is out of bounds"""
     with pytest.raises(BadParameter) as excinfo:
-        board_dimension.convert('10', None, None)
+        board_dimension.convert('11', None, None)
     exc_msg = excinfo.exconly(tryshort=True)
-    assert exc_msg == ('BadParameter: dimension 10 should be greater than 0 '
-                       'and lesser than 8')
+    assert exc_msg == ('BadParameter: dimension 11 should be greater than 0 '
+                       'and lesser or equals than 10')
 
 
 def test_piece_number_success(piece_number):

@@ -16,11 +16,11 @@ class BoardDimension(click.ParamType):
         except ValueError:
             self.fail('provided value is not a valid integer')
         else:
-            if 0 < dimension < 8:
+            if 0 < dimension <= 10:
                 return dimension
             else:
                 self.fail('dimension {} should be greater than 0 '
-                          'and lesser than 8'.format(dimension))
+                          'and lesser or equals than 10'.format(dimension))
 
     def __repr__(self):
         return 'DIMENSION'
