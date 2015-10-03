@@ -19,14 +19,11 @@ class Piece(object):
         """Calculates threatened positions from the current one"""
         raise NotImplementedError()
 
-    def _is_valid_position(self, pos):
-        """Returns True if the given coordinates are inside the board"""
-        i, j = pos
-        return i >= 0 and j >= 0 and i < self.height and j < self.width
-
     def remove_invalid_positions(self, positions):
         """Filters out positions outside of the board range"""
-        return filter(self._is_valid_position, positions)
+        return [p for p in positions
+                if p[0] >= 0 and p[1] >= 0 and
+                p[0] < self.height and p[1] < self.width]
 
 
 class King(Piece):
