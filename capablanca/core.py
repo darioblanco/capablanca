@@ -24,9 +24,9 @@ class ChessPlayer(object):
         }
 
         self.pieces = []
-        for name, count in piece_counts.iteritems():
-            if count > 0:
-                self.pieces += [name for i in range(count)]
+        # Sorted list of pieces based on how many squares will they cover
+        for p in ['Q', 'R', 'B', 'K', 'N']:
+            self.pieces += [p for i in range(piece_counts[p])]
 
         self.solutions = set()
         self.elapsed_time = None  # Problem resolution time in float seconds

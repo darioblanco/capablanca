@@ -4,10 +4,18 @@
 from capablanca.core import ChessPlayer
 
 
+def test_piece_list():
+    """Should create a proper piece list from the input"""
+    cp = ChessPlayer(8, 8, {'K': 2, 'Q': 2, 'B': 2, 'R': 1, 'N': 1})
+    assert cp.pieces == ['Q', 'Q', 'R', 'B', 'B', 'K', 'K', 'N']
+
+    cp = ChessPlayer(2, 2, {'K': 0, 'Q': 0, 'B': 0, 'R': 0, 'N': 0})
+    assert cp.pieces == []
+
+
 def test_draw_boards():
     """Should pretty print the board with the expected format"""
-    cp = ChessPlayer(2, 2, {'R': 2})
-    assert cp.pieces == ['R', 'R']
+    cp = ChessPlayer(2, 2, {'K': 0, 'Q': 0, 'B': 0, 'R': 2, 'N': 0})
 
     cp.run()
     cp.elapsed_time = 0.000379
@@ -30,7 +38,6 @@ def test_draw_boards():
 def test_chess_player_1x3_solutions():
     """Should give 1 solution when giving 2 Kings and 1x3"""
     cp = ChessPlayer(1, 3, {'K': 2, 'Q': 0, 'B': 0, 'R': 0, 'N': 0})
-    assert cp.pieces == ['K', 'K']
 
     cp.run()
 
@@ -44,7 +51,6 @@ def test_chess_player_1x3_solutions():
 def test_chess_player_3x3_solutions():
     """Should give four solutions when giving 2 Kings and 1 Rook for 3x3"""
     cp = ChessPlayer(3, 3, {'K': 2, 'Q': 0, 'B': 0, 'R': 1, 'N': 0})
-    assert cp.pieces == ['R', 'K', 'K']
 
     cp.run()
 
@@ -75,7 +81,6 @@ def test_chess_player_3x3_solutions():
 def test_chess_player_4x4_solutions():
     """Should give eight solutions when giving 2 Rooks and 4 Knights for 4x4"""
     cp = ChessPlayer(4, 4, {'K': 0, 'Q': 0, 'B': 0, 'R': 2, 'N': 4})
-    assert cp.pieces == ['R', 'R', 'N', 'N', 'N', 'N']
 
     cp.run()
 
@@ -134,7 +139,6 @@ def test_chess_player_4x4_solutions():
 def test_chess_player_4_queens():
     """Should solve the 4 queens problem with a 4x4 board"""
     cp = ChessPlayer(4, 4, {'K': 0, 'Q': 4, 'B': 0, 'R': 0, 'N': 0})
-    assert cp.pieces == ['Q', 'Q', 'Q', 'Q']
 
     cp.run()
 
@@ -157,7 +161,6 @@ def test_chess_player_4_queens():
 def test_chess_player_6_queens():
     """Should solve the 6 queens problem with a 6x6 board"""
     cp = ChessPlayer(6, 6, {'K': 0, 'Q': 6, 'B': 0, 'R': 0, 'N': 0})
-    assert cp.pieces == ['Q', 'Q', 'Q', 'Q', 'Q', 'Q']
 
     cp.run()
 
