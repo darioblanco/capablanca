@@ -2,16 +2,9 @@
 # Copyright 2015, Dario Blanco
 
 import pytest
-from click.testing import CliRunner
 
 from capablanca.play import play
 from capablanca.core import ChessPlayer
-
-
-@pytest.fixture()
-def runner():
-    """Creates a CliRunner instance for any test that needs it"""
-    return CliRunner()
 
 
 @pytest.fixture(autouse=True)
@@ -119,9 +112,8 @@ def test_play_invalid_height_number(runner):
     )
 
 
-def test_play_piece_number_string():
+def test_play_piece_number_string(runner):
     """Should show an error when a piece number is a string"""
-    runner = CliRunner()
     # Provide a piece number as string, and correct later
     result = runner.invoke(play, input='6\n6\nfoo\n1\n2\n4\n0\n1\n')
     assert not result.exception
@@ -140,9 +132,8 @@ def test_play_piece_number_string():
     )
 
 
-def test_play_invalid_piece_number():
+def test_play_invalid_piece_number(runner):
     """Should show an error when a piece number is out of bounds"""
-    runner = CliRunner()
     # Provide an incorrect piece number first time, and correct later
     result = runner.invoke(play, input='6\n6\n1000\n1\n2\n4\n0\n1\n')
     assert not result.exception
