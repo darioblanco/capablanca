@@ -20,26 +20,62 @@ A set of chess pieces on a chess board with specific dimensions, where none of t
 
 ### Output
 
-Capablanca will show all the unique configurations for the provided pieces, where none of the pieces is in a position to take any of the others
+Capablanca will show all the unique configurations for the provided pieces, where none of the pieces is in a position to take any of the others.
 
+```
+$ capablanca
+Please enter board width: 2
+Please enter board height: 2
+Please enter number of Kings: 0
+Please enter number of Queens: 0
+Please enter number of Bishops: 0
+Please enter number of Rooks: 2
+Please enter number of Knights: 0
+
+Solutions:
+
+* * * *
+* R - *
+* - R *
+* * * *
+
+* * * *
+* - R *
+* R - *
+* * * *
+
+2 solutions found in 0.000306 seconds
+```
 
 ## Execution
 
+### Installing requirements directly
+
 First of all, install the needed dependencies via pip
 
-> pip install -r requirements.txt
+> $ pip install -r requirements.txt
 
 And that's all! Now, you can play with Capablanca, he will tell you what data he needs at any time.
 
-> python capablanca/play.py
+> $ python capablanca/play.py
 
 Capablanca also explains what he does!
 
-> python capablanca/play.py --help
+> $ python capablanca/play.py --help
 
 After all the data he needs have been provided, Capablanca will draw all possible combinations.
 
 If you want to run Capablanca without any dependency, you can directly call `capablanca.core.ChessPlayer` from a python interactive shell.
+
+### Via pip (preferred way)
+
+Capablanca is also ready for being a pip package, just run
+
+> $ pip install .
+
+And you can call the console client with `capablanca`
+
+> $ capablanca --help
 
 
 ## Development
@@ -48,13 +84,13 @@ This project uses `python 2.7`, and `click` as an external library for handling 
 
 For proper developing (running tests, style check, coverage...) you have to install the development dependencies:
 
-> pip install -r dev-requirements.txt
+> $ pip install -r dev-requirements.txt
 
 I recommend using `virtualenv` and `virtualenvwrapper`. A common set up with both tools is the following
 
-> cd ~/capablanca
-> mkvirtualenv -a . capablanca
-> add2virtualenv .
+> $ cd ~/capablanca
+> $ mkvirtualenv -a . capablanca
+> $ add2virtualenv .
 
 With this set up, every time you perform `workon capablanca`, `virtualenvwrapper` will automatically switch to the project folder. `add2virtualenv .` sets up the needed PYTHONPATH for loading Capablanca's modules.
 
@@ -62,7 +98,7 @@ With this set up, every time you perform `workon capablanca`, `virtualenvwrapper
 
 Tests are using `pytest` framework, for running all unit tests, just execute
 
-> py.test
+> $ py.test
 
 You can find more information about how to run `pytest` [here](https://pytest.org/latest/usage.html).
 
@@ -70,13 +106,13 @@ Integration tests (under `test_capablanca.py`) are disabled by default, as they 
 
 You can execute the integration tests with
 
-> py.test --test-type integration
+> $ py.test --test-type integration
 
 #### Test coverage
 
 This project uses `pytest-cov` for measuring coverage, just append the parameter `--cov=capablanca` to any `pytest` call, for instance
 
-> py.test --cov=capablanca
+> $ py.test --cov=capablanca
 
 The test coverage statistics will be shown at the end of the run
 
@@ -84,13 +120,13 @@ The test coverage statistics will be shown at the end of the run
 
 Code Analysis is performed via `pylint`. In order to rate the code, simply run
 
-> pylint capablanca
+> $ pylint capablanca
 
 ### Code Style
 
 The code is following [PEP8](http://www.python.org/dev/peps/pep-0008/) conventions. In order to check for convention violations, just run
 
-> pep8 capablanca/*.py -v
+> $ pep8 capablanca/*.py -v
 
 This command will output PEP8 errors found (if any)
 
@@ -100,7 +136,7 @@ In order to measure total and function running time, calls, and other useful par
 
 For instance, with `cProfile`, you can call capablanca's script adding that module:
 
-> python -m cProfile capablanca/play.py
+> $ python -m cProfile capablanca/play.py
 
 The profile statistics will be printed out at the end.
 
@@ -109,7 +145,7 @@ The profile statistics will be printed out at the end.
 ### 7x7 board with 2 Kings, 2 Queens, 2 Bishops and 1 Knight
 
 ```
-(capablanca)➜  capablanca git:(master) ✗ python capablanca/play.py
+$ capablanca
 Please enter board width: 7
 Please enter board height: 7
 Please enter number of Kings: 2
