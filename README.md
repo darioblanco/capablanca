@@ -1,4 +1,5 @@
 # Capablanca
+![Build Status](https://travis-ci.org/sharkerz/capablanca.svg?branch=master)
 
 [Jose Raúl Capablanca y Graupera](https://en.wikipedia.org/wiki/Jos%C3%A9_Ra%C3%BAl_Capablanca) was one of the greatest chess players in history, and gives name to this little chess experiment. Capablanca was awesome, and as any amazing chess guru, he could think in many different chess plays in advance, in order to bow down his rivals.
 
