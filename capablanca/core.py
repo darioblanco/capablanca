@@ -26,7 +26,7 @@ class ChessPlayer(object):
         self.pieces = []
         # Sorted list of pieces based on how many squares will they cover
         for piece in ['Q', 'R', 'B', 'K', 'N']:
-            self.pieces += [piece for i in range(piece_counts[piece])]
+            self.pieces += [piece for _ in range(piece_counts[piece])]
 
         self.elapsed_time = None  # Problem resolution time in float seconds
 
