@@ -37,12 +37,24 @@ Capablanca also explains what he does!
 
 After all the data he needs have been provided, Capablanca will draw all possible combinations.
 
+If you want to run Capablanca without any dependency, you can directly call `capablanca.core.ChessPlayer` from a python interactive shell.
+
 
 ## Development
 
-For developing, you have to install the development dependencies:
+This project uses `python 2.7`, and `click` as an external library for handling console parameters and the interactive mode.
+
+For proper developing (running tests, style check, coverage...) you have to install the development dependencies:
 
 > pip install -r dev-requirements.txt
+
+I recommend using `virtualenv` and `virtualenvwrapper`. A common set up with both tools is the following
+
+> cd ~/capablanca
+> mkvirtualenv -a . capablanca
+> add2virtualenv .
+
+With this set up, every time you perform `workon capablanca`, `virtualenvwrapper` will automatically switch to the project folder. `add2virtualenv .` sets up the needed PYTHONPATH for loading Capablanca's modules.
 
 ### Test
 
@@ -88,7 +100,7 @@ For instance, with `cProfile`, you can call capablanca's script adding that modu
 
 > python -m cProfile capablanca/play.py
 
-Just use it as normally and the profile statistics will be printed out at the end.
+The profile statistics will be printed out at the end.
 
 ## Examples
 
