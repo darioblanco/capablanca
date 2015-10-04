@@ -9,9 +9,9 @@ This little program tries to emulate him, showing all combinations for a given s
 
 The input given to Capablanca should match the following criteria
 
-- Board dimensions have to be provided (width and height), greater than 0 and smaller than 100
+- Board dimensions have to be provided (width and height), greater than 0 and smaller or equals than 10
 - There are 5 available pieces: King (KI), Queen (Q), Bishop (B) and Knight (KN)
-- Number of each piece to be placed has to be provided
+- Number of each piece to be placed has to be provided (maximum 10 pieces)
 - Pieces don't have colours
 
 A set of chess pieces on a chess board with specific dimensions, where none of the pieces can't take any of the others
@@ -89,3 +89,173 @@ For instance, with `cProfile`, you can call capablanca's script adding that modu
 > python -m cProfile capablanca/play.py
 
 Just use it as normally and the profile statistics will be printed out at the end.
+
+## Examples
+
+### 7x7 board with 2 Kings, 2 Queens, 2 Bishops and 1 Knight
+
+```
+(capablanca)➜  capablanca git:(master) ✗ python capablanca/play.py
+Please enter board width: 7
+Please enter board height: 7
+Please enter number of Kings: 2
+Please enter number of Queens: 2
+Please enter number of Bishops: 2
+Please enter number of Rooks: 0
+Please enter number of Knights: 1
+
+Solutions:
+
+* * * * * * * * *
+* K - N - - - - *
+* - - - - - - - *
+* - - - - - - - *
+* B - - - - - - *
+* - - - Q - - - *
+* - - - - - - Q *
+* - - B - K - - *
+* * * * * * * * *
+
+* * * * * * * * *
+* K - - - - - - *
+* - - - - - - Q *
+* - - - - Q - - *
+* N - B - - - - *
+* B - - - - - - *
+* - - - - - - - *
+* - - - K - - - *
+* * * * * * * * *
+
+* * * * * * * * *
+* - - - - - - - *
+* N - - - B - - *
+* - - - - - - - *
+* K - - - - - - *
+* - - Q - - - - *
+* - - - - - Q - *
+* - B - K - - - *
+* * * * * * * * *
+
+* * * * * * * * *
+* - - - - - - - *
+* - K - - - K - *
+* - - - Q - - - *
+* - B - - - - - *
+* - - - - - - Q *
+* - - - - B - - *
+* N - - - - - - *
+* * * * * * * * *
+
+* * * * * * * * *
+* - Q - - - - - *
+* - - - K - - N *
+* - - - - - - - *
+* - - - B - - - *
+* K - - - - - - *
+* - - - B - - - *
+* - - - - - Q - *
+* * * * * * * * *
+
+* * * * * * * * *
+* - - - - - - - *
+* N - - - - - - *
+* - - - - - Q - *
+* B - K - - - - *
+* - - - - - - Q *
+* K - - B - - - *
+* - - - - - - - *
+* * * * * * * * *
+
+* * * * * * * * *
+* - - - - - K - *
+* - N - - - - - *
+* - B - - - K - *
+* - - - - - - - *
+* - - - - - - Q *
+* - B - - - - - *
+* - - - Q - - - *
+* * * * * * * * *
+
+* * * * * * * * *
+* - B - - - - - *
+* - - - - Q - - *
+* B - - - - - - *
+* - - - K - K - *
+* - - - - - - - *
+* - - Q - - - - *
+* - - - - - - N *
+* * * * * * * * *
+
+* * * * * * * * *
+* - - - - K - - *
+* N - - - - - - *
+* B - - - - - K *
+* - - - - - - - *
+* - - - - - Q - *
+* - - Q - - - - *
+* - - - - - - B *
+* * * * * * * * *
+
+* * * * * * * * *
+* - Q - - - - - *
+* - - - - - - - *
+* - - - - - - K *
+* B - - - - - - *
+* N - - B - - - *
+* - - - - - Q - *
+* - - K - - - - *
+* * * * * * * * *
+
+* * * * * * * * *
+* B - - - - - - *
+* - - - - K - K *
+* - - - - - - - *
+* - - - - - Q - *
+* - - - - - - - *
+* - Q - - - - - *
+* - - - B N - - *
+* * * * * * * * *
+
+* * * * * * * * *
+* - - - - - - - *
+* - - - Q - - - *
+* K - - - - - - *
+* - - - - - - K *
+* - - - - B - - *
+* - Q - - - - - *
+* - - - - N B - *
+* * * * * * * * *
+
+* * * * * * * * *
+* - - - - - - - *
+* - Q - - - - - *
+* - - - K - - - *
+* - - - - - Q - *
+* B - - - - - - *
+* N - B - K - - *
+* - - - - - - - *
+* * * * * * * * *
+
+* * * * * * * * *
+* - - - B - - B *
+* - K - - - - - *
+* - - - - - - - *
+* - - - - - Q - *
+* - - - - - - - *
+* Q - - - - - - *
+* - - - - K - N *
+* * * * * * * * *
+
+* * * * * * * * *
+* - - - - - N - *
+* B - K - - - - *
+* - - - - - K - *
+* - - - - - - - *
+* - - - - - - B *
+* - Q - - - - - *
+* - - - Q - - - *
+* * * * * * * * *
+
+(only showing up to 15 unique solutions)
+3063828 solutions found in 211.468422 seconds
+```
