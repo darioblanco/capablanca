@@ -10,6 +10,6 @@ install:
 script:
   - pylint capablanca
   - pep8 capablanca/*.py -v
-  - py.test --cov=.
-after_sucess:
+  - py.test --cov=capablanca
+after_success:
   - coveralls
