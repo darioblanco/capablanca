@@ -14,6 +14,7 @@ from capablanca.cache import ThreatCache
 
 class ChessPlayer(object):
     """Create all possible solutions for the given pieces and board size"""
+    MAX_SOLUTIONS = 15
 
     def __init__(self, height, width, piece_counts):
         """Assigns board size and create piece abstractions"""
@@ -27,9 +28,12 @@ class ChessPlayer(object):
         for piece in ['Q', 'R', 'B', 'K', 'N']:
             self.pieces += [piece for i in range(piece_counts[piece])]
 
-        self.raw_solutions = set()  # Unique list of simple string solutions
-        self.solutions = []  # List of pretty printed solutions (max 15)
         self.elapsed_time = None  # Problem resolution time in float seconds
+
+        # Unique list of simple string solutions
+        self.raw_solutions = set()
+        # List of pretty printed solutions (only showing up to MAX_SOLUTIONS)
+        self.solutions = []
 
     def run(self):
         """
@@ -88,8 +92,11 @@ class ChessPlayer(object):
         n_solutions = len(self.raw_solutions)
         output = "\nSolutions:\n\n"
 
-        for i, raw_solution in enumerate(self.raw_solutions):  # Show 15 max
-            if i == 15:
+        for i, raw_solution in enumerate(self.raw_solutions):
+            if i == self.MAX_SOLUTIONS:
+                # Show only up to MAX_SOLUTIONS number of solutions
+                output += ("(only showing up to {} unique solutions)\n"
+                           "").format(self.MAX_SOLUTIONS)
                 break
             else:
                 solution = self._generate_board(raw_solution)
