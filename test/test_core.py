@@ -40,11 +40,12 @@ def test_chess_player_1x3_solutions():
     cp = ChessPlayer(1, 3, {'K': 2, 'Q': 0, 'B': 0, 'R': 0, 'N': 0})
 
     cp.run()
+    cp.draw_boards()
 
-    expected_solutions = set([
+    expected_solutions = [
         ('* * * * *\n'
          '* K - K *\n'
-         '* * * * *\n')])
+         '* * * * *\n')]
     assert cp.solutions == expected_solutions
 
 
@@ -53,8 +54,9 @@ def test_chess_player_3x3_solutions():
     cp = ChessPlayer(3, 3, {'K': 2, 'Q': 0, 'B': 0, 'R': 1, 'N': 0})
 
     cp.run()
+    cp.draw_boards()
 
-    expected_solutions = set([
+    expected_solutions = [
         ('* * * * *\n'
          '* K - - *\n'
          '* - - R *\n'
@@ -74,8 +76,10 @@ def test_chess_player_3x3_solutions():
          '* - - K *\n'
          '* R - - *\n'
          '* - - K *\n'
-         '* * * * *\n')])
-    assert cp.solutions == expected_solutions
+         '* * * * *\n')]
+    assert len(cp.solutions) == len(expected_solutions)
+    for expected_solution in expected_solutions:
+        assert expected_solution in cp.solutions
 
 
 def test_chess_player_4x4_solutions():
@@ -83,8 +87,9 @@ def test_chess_player_4x4_solutions():
     cp = ChessPlayer(4, 4, {'K': 0, 'Q': 0, 'B': 0, 'R': 2, 'N': 4})
 
     cp.run()
+    cp.draw_boards()
 
-    expected_solutions = set([
+    expected_solutions = [
         ('* * * * * *\n'
          '* R - - - *\n'
          '* - N - N *\n'
@@ -132,8 +137,10 @@ def test_chess_player_4x4_solutions():
          '* - N - N *\n'
          '* R - - - *\n'
          '* - N - N *\n'
-         '* * * * * *\n')])
-    assert cp.solutions == expected_solutions
+         '* * * * * *\n')]
+    assert len(cp.solutions) == len(expected_solutions)
+    for expected_solution in expected_solutions:
+        assert expected_solution in cp.solutions
 
 
 def test_chess_player_4_queens():
@@ -141,8 +148,9 @@ def test_chess_player_4_queens():
     cp = ChessPlayer(4, 4, {'K': 0, 'Q': 4, 'B': 0, 'R': 0, 'N': 0})
 
     cp.run()
+    cp.draw_boards()
 
-    expected_solutions = set([
+    expected_solutions = [
         ('* * * * * *\n'
          '* - Q - - *\n'
          '* - - - Q *\n'
@@ -154,8 +162,10 @@ def test_chess_player_4_queens():
          '* Q - - - *\n'
          '* - - - Q *\n'
          '* - Q - - *\n'
-         '* * * * * *\n')])
-    assert cp.solutions == expected_solutions
+         '* * * * * *\n')]
+    assert len(cp.solutions) == len(expected_solutions)
+    for expected_solution in expected_solutions:
+        assert expected_solution in cp.solutions
 
 
 def test_chess_player_6_queens():
@@ -163,8 +173,9 @@ def test_chess_player_6_queens():
     cp = ChessPlayer(6, 6, {'K': 0, 'Q': 6, 'B': 0, 'R': 0, 'N': 0})
 
     cp.run()
+    cp.draw_boards()
 
-    expected_solutions = set([
+    expected_solutions = [
         ('* * * * * * * *\n'
          '* - Q - - - - *\n'
          '* - - - Q - - *\n'
@@ -196,5 +207,7 @@ def test_chess_player_6_queens():
          '* - - - - - Q *\n'
          '* - - - Q - - *\n'
          '* - Q - - - - *\n'
-         '* * * * * * * *\n')])
-    assert cp.solutions == expected_solutions
+         '* * * * * * * *\n')]
+    assert len(cp.solutions) == len(expected_solutions)
+    for expected_solution in expected_solutions:
+        assert expected_solution in cp.solutions
