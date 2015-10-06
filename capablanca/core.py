@@ -92,16 +92,18 @@ class ChessPlayer(object):
         n_solutions = len(self.raw_solutions)
         output = "\nSolutions:\n\n"
 
-        for i, raw_solution in enumerate(self.raw_solutions):
-            if i == self.MAX_SOLUTIONS:
-                # Show only up to MAX_SOLUTIONS number of solutions
-                output += ("(only showing up to {} unique solutions)\n"
-                           "").format(self.MAX_SOLUTIONS)
-                break
-            else:
-                solution = self._generate_board(raw_solution)
-                self.solutions.append(solution)
-                output += "{}\n".format(solution)
+        if n_solutions > self.MAX_SOLUTIONS:
+            # Show only up to MAX_SOLUTIONS number of solutions
+            output += ("(only showing up to {} unique solutions)\n"
+                       "").format(self.MAX_SOLUTIONS)
+            limit = self.MAX_SOLUTIONS
+        else:
+            limit = n_solutions
+
+        for _ in range(limit):
+            solution = self._generate_board(self.raw_solutions.pop())
+            self.solutions.append(solution)
+            output += "{}\n".format(solution)
 
         output += "{} solutions found in {} seconds\n".format(
             n_solutions, self.elapsed_time)
