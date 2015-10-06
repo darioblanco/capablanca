@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 # Copyright 2015, Dario Blanco
 
+"""
+This module tests capablanca.play
+"""
+
 import pytest
 
 from capablanca.play import play

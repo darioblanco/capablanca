@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 # Copyright 2015, Dario Blanco
 
+"""
+This module provides common helpers to pytest's test modules
+"""
+
 import pytest
 
 from click.testing import CliRunner

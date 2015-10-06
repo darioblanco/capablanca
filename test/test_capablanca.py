@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 # Copyright 2015, Dario Blanco
 
+"""
+This module provides integration tests for the capablanca project
+"""
+
 import pytest
 
 from capablanca.play import play

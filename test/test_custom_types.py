@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 # Copyright 2015, Dario Blanco
 
+"""
+This module tests capablanca.custom_types
+"""
+
 import pytest
 from click import BadParameter
 
@@ -19,12 +23,12 @@ def piece_number():
     return PieceNumber()
 
 
-def test_board_dimension_success(board_dimension):
+def test_dimension_success(board_dimension):
     """Should convert a console board dimension parameter to int"""
     assert board_dimension.convert('3', None, None) == 3
 
 
-def test_board_dimension_not_integer(board_dimension):
+def test_dimension_not_integer(board_dimension):
     """Should track an error when the board dimension is not an int"""
     with pytest.raises(BadParameter) as excinfo:
         board_dimension.convert('foo', None, None)
@@ -32,7 +36,7 @@ def test_board_dimension_not_integer(board_dimension):
     assert exc_msg == 'BadParameter: provided value is not a valid integer'
 
 
-def test_board_dimension_out_of_bounds(board_dimension):
+def test_dimension_out_of_bounds(board_dimension):
     """Should track an error when the board dimension is out of bounds"""
     with pytest.raises(BadParameter) as excinfo:
         board_dimension.convert('11', None, None)
